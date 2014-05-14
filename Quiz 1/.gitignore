@@ -1,0 +1,5 @@
+*.RData
+*.Rhistory
+/getdata-data-ss06pid.csv
+/ss06hid.csv
+/getdata-data-restaurants.xml

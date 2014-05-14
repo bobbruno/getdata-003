@@ -1,0 +1,66 @@
+# Github Token Access
+========================================================
+
+## Question 1
+Accessing the github API for the Coursera John Hopkins's "Getting and Cleaning Data" Week 2 Quiz.
+
+Following the [tutorial link at the quiz](https://github.com/hadley/httr/blob/master/demo/oauth2-github.r). Through this tutorial,Only web URL authorization was achieved. There should be a way to do this withouth the web screen, but the library does not seem to support it. Additional tests of POST or PUT should be done based on the instructions on [GitHub](https://developer.github.com/v3/oauth_authorizations/#create-a-new-authorization).
+
+The goal is to access the API to get information on your instructors repositories (hint: this is the url you want "https://api.github.com/users/jtleek/repos"). Use this data to find the time that the datasharing repo was created. `r require(httr)` `r require(httpuv)` `r require(rjson)` `r myApp = oauth_app(appname="bobbruno-app0001-coursera-getdata-003", key="a4c9422a2c10ffeab01d", secret="6d0a6c7cba72d7e16712c0b4fdabea2502b39cb6")` `r githubToken = oauth2.0_token(oauth_endpoints("github"), myApp, cache = TRUE)`
+
+```{r}
+json1 = content(GET("https://api.github.com/users/jtleek/repos"))
+myRepo = json1[sapply(json1, function(x) x$name == "datasharing")]
+sprintf("Repository created at %s", myRepo[[1]]$created_at)
+```
+
+## Question 2
+
+The sqldf package allows for execution of SQL commands on R data frames. We will use the sqldf package to practice the queries we might send with the dbSendQuery command in RMySQL. Download the [American Community Survey data](https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv) and load it into an R object called `acs` `r require(sqldf)`
+
+```{r}
+if (!file.exists("./ss06pid.csv")) {
+    download.file("https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv", destfile="./ss06pid.csv", method="curl")
+}
+
+acs = read.csv("./ss06pid.csv")
+```
+
+
+Which of the following commands will select only the data for the probability weights pwgtp1 with ages less than 50?
+
+`sqldf("select pwgtp1 from acs where AGEP < 50")`
+
+## Question 3
+
+Using the same data frame you created in the previous problem, what is the equivalent function to unique(acs$AGEP)
+
+`sqldf("select distinct AGEP from acs")`
+
+## Question 4
+
+How many characters are in the 10th, 20th, 30th and 100th lines of HTML from this page: 
+
+http://biostat.jhsph.edu/~jleek/contact.html
+
+(Hint: the nchar() function in R may be helpful)
+```{r}
+page = url("http://biostat.jhsph.edu/~jleek/contact.html")
+htmlCode = readLines(page)
+close(page)
+nchar(htmlCode[c(10, 20, 30, 100)])
+```
+
+## Question 5
+
+Read this data set into R and report the sum of the numbers in the fourth column. 
+
+https://d396qusza40orc.cloudfront.net/getdata%2Fwksst8110.for 
+
+Original source of the data: http://www.cpc.ncep.noaa.gov/data/indices/wksst8110.for 
+
+```{r}
+df = read.fwf(file="./wksst8110.for", widths=c(10, -5, 4, 4,-5, 4, 4, -5, 4, 4, -5, 4, 4), skip=4,col.names=c("Week", "Nino12SST", "Nino12SSTA", "Nino3SST", "Nino3SSTA", "Nino34SST", "Nino34SSTA", "Nino4SST", "Nino4SSTA"))
+sum(df$Nino3SST)
+```
+

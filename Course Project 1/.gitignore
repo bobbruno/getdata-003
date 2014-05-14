@@ -1,0 +1,12 @@
+/.Rproj.user/
+/test/
+/train/
+/UCI HAR Dataset/
+*.directory
+*.RData
+*.Rhistory
+/README.txt
+/UCI HAR Dataset.zip
+/activity_labels.txt
+/features.txt
+/features_info.txt
