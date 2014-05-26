@@ -45,7 +45,7 @@ For all of these variables, the following summary metrics were calculated:
 * skewness: skewness of the frequency domain signal 
 * kurtosis: kurtosis of the frequency domain signal 
 * bandsEnergy: Energy of a frequency interval within the 64 bins of the FFT of each window.
-* angle: Angle between to vectors.
+* angle: Angle between to vectors. 
 
 Also, the Inertial Signals directory has x, y, and z coordinates for:
 * Body acceleration signal(total acceleration minus  gravity): body_acc_<coord>_<set>.txt
