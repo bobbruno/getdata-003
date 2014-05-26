@@ -7,6 +7,7 @@
 * activity: type of activity being measured
 * labels: link to the y<set>.txt file
 * subject: subject id, link to the subject<set>.txt file
+
 ### and the following variables:
 * tBodyAccXYZ: Body Acceleration in the 3 spatial directions
 * tGravityAccXYZ: Gravity Acceleration in the 3 spatial directions
@@ -18,6 +19,7 @@
 * tBodyAccJerkMag: Magnitude of Body Acceleration Jerk
 * tBodyGyroMag: Magnitude of Body Gyroscope
 * tBodyGyroJerkMag: Magnitude of Body Gyroscope Jerk
+
 ### Also, some fast fourier transforms of the previous variables are available:
 * fBodyAccXYZ: FFT of tBodyAccXYZ
 * fBodyAccJerkXYZ: FFT of tBodyAccJerkXYZ
@@ -26,6 +28,7 @@
 * fBodyAccJerkMag: FFT of tBodyAccJerkMag
 * fBodyGyroMag: FFT of tBodyGyroMag
 * fBodyGyroJerkMag: FFT of tBodyGyroJerkMag
+
 ### For all of these variables, the following summary metrics were calculated:
 * mean: Mean value
 * std: Standard deviation
